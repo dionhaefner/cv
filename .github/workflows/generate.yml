@@ -1,0 +1,52 @@
+name: generate-cv
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "generated/*.pdf"
+
+jobs:
+  generate-cv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install XeLaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex
+
+      - name: Install fonts
+        run: |
+          mkdir ~/.fonts
+          unzip fonts/* -d ~/.fonts
+          fc-cache -fv
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate CV
+        run: python generate.py content.yaml -t templates/cv.tex.in -o generated/cv.pdf
+
+      - name: Generate resume
+        run: python generate.py content.yaml -t templates/resume.tex.in -o generated/resume.pdf
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add generated
+          git commit -m "Auto-generate CV"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage{environ}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,hmargin={3cm, 3cm},vmargin={2.5cm, 2.5cm}]{geometry}
+\usepackage{csquotes}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{scrextend}
+\usepackage{graphics}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{biblatex}
+\bibliography{publications}
+\nocite{*}
+
+% Colors
+\definecolor{highlight}{HTML}{CC0000}
+\definecolor{lightgrey}{gray}{0.5}
+\definecolor{halfgrey}{gray}{0.3}
+\definecolor{darkgrey}{gray}{0.15}
+
+% Fonts
+\renewcommand{\baselinestretch}{1.2}
+\setmainfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\highlightfont[Color=highlight]{Source Sans Pro}
+\newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
+\newfontfamily\sidebarfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\headingfont[Color=darkgrey]{Source Sans Pro Bold}
+\newfontfamily\subheadingfont[Color=darkgrey]{Source Sans Pro Semibold}
+
+\newcommand{\highlight}[1]{{\highlightfont #1}}
+\newcommand{\shady}[1]{{\shadyfont #1}}
+
+% Lists
+\newcommand{\anglebullet}{\textcolor{halfgrey}{{\scriptsize\faIcon{angle-double-right}}}}
+\newenvironment{items}{%
+	\begin{list}{\anglebullet}{%
+			\setlength{\partopsep}{0pt}
+			\setlength{\parsep}{0pt}
+			\setlength{\itemsep}{5pt}
+			\setlength{\leftmargin}{1em}
+			\setlength{\itemindent}{0pt}
+		}
+	}{\end{list}}
+
+% Personal information
+\newcommand{\name}{\VAR{personal.name}}
+\newcommand{\jobtitle}{\VAR{personal.jobtitle}}
+\newcommand{\address}{\href{\VAR{personal.addressurl}}{\VAR{personal.address}}}
+\newcommand{\phone}{\VAR{personal.phone}}
+\newcommand{\email}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
+\newcommand{\github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
+\newcommand{\homepage}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
+
+% Styles
+\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
+\newcommand{\namestyle}[1]{\highlight{\Huge\scshape\MakeLowercase{#1}}}
+\newcommand{\jobtitlestyle}[1]{{\footnotesize #1}}
+
+\titleformat{\section}{\headingfont\Large}{}{0pt}{}
+\titleformat{\subsection}{\subheadingfont}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.4ex plus 1ex minus .2ex}{0pt plus .2ex}
+\titlespacing*{\subsection}{0pt}{0.5ex plus 1ex minus .2ex}{-1ex}
+
+\newcommand{\cvtitle}{\namestyle{\name}}
+\newcommand{\cvdetails}{\titleitem{phone}{\phone} \titleitem{envelope}{\email} \titleitem{globe}{\homepage} \titleitem{github}{\github}}
+\newcommand{\cvrule}{\textcolor{darkgrey}{\rule{\linewidth}{0.5pt}}}
+
+\newlength{\currentparskip}
+\NewEnviron{job}[4]{%
+	\setlength{\currentparskip}{\parskip}%
+	\begin{tabularx}{\textwidth}{@{}rX@{}}
+		\multirow{2}{1.4cm}{\textit{\footnotesize#1 – #2}} & {\subheadingfont#3} @ {\subheadingfont#4} \\
+		& \setlength{\parskip}{\currentparskip}\BODY
+	\end{tabularx}
+	\medskip
+}
+
+%
+% Main document
+%
+
+\begin{document}
+	\pagestyle{plain}
+	\cvtitle\\[1em]
+	\cvdetails\\
+	\cvrule
+
+	\VAR{tagline}
+
+	\section{Education}
+	%% for job in education.values()
+	\begin{job}
+		{\VAR{job["start"].strftime("%b %Y")}}
+		{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+		{\VAR{job["title"]}}
+		{\VAR{job["institution"]}}
+			\VAR{job["long-description"]}
+		\end{job}
+	%% endfor
+
+	\section{Professional Experience}
+	%% for job in jobs.values()
+	\begin{job}
+	{\VAR{job["start"].strftime("%b %Y")}}
+	{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+	{\VAR{job["title"]}}
+	{\VAR{job["company"]}}
+		\VAR{job["long-description"]}
+	\end{job}
+	%% endfor
+
+	\section{Programming and Technology}
+	\begin{description}
+		%% for tech in technology.values()
+		\item[\VAR{tech.title}] \VAR{tech["long-description"]}
+		%% endfor
+	\end{description}
+
+	\section{Other Skills \& Interests}
+	\begin{items}
+		%% for item in other.values()
+		\item \VAR{item}
+		%% endfor
+		\item Languages:
+		%% for item in languages.values()
+		\VAR{item.lang}: \VAR{item.skill}
+			%% if (not loop.last)
+			,
+			%% endif
+		%% endfor
+	\end{items}
+
+	%% if awards
+	\section {Awards \& Honors}
+	\begin{items}
+		%% for item in awards.values()
+		\item \VAR{item.title} by \VAR{item.institution} (\VAR{item.date.year})
+		%% endfor
+	\end{items}
+	%% endif
+
+	\printbibliography[title=Peer-reviewed Publications]
+\end{document}

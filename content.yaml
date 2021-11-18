@@ -1,0 +1,257 @@
+personal:
+  name: Dion Häfner
+  jobtitle:
+  address: Malmö
+  addressurl: https://goo.gl/maps/bdrNM5vz67v
+  phone: "+46 76 391 14 75"
+  email: dionha@pm.me
+  github: dionhaefner
+  homepage: dionhaefner.github.io
+  scholar: 8jzVkXEAAAAJ
+  twitter: dionhaefner
+  linkedin: dionhaefner
+  spotify: "1214862881"
+
+
+tagline: >
+  I am a Physics graduate specialized on all things scientific computing,
+  with industry experience in data processing and machine learning.
+
+  My main research interest is ``human learning'': How can we build machines
+  that teach us something about our physical world?
+
+
+jobs:
+  gras:
+    company: DHI GRAS
+    title: Software development specialist
+    location: Hørsholm, Denmark
+    start: 01-09-2017
+    end: 01-12-2018
+    long-description: >
+      At DHI GRAS, I built robust data pipelines and powerful machine
+      learning tools on satellite images. Through low-level optimizations
+      on one particularly expensive algorithm, I was able to cut processing
+      times by over 3 orders of magnitude (from weeks to hours), while
+      minimizing human supervision.
+    description: >
+      At DHI GRAS, I built robust data pipelines, powerful statistical tools,
+      and optimized remote sensing workflows.
+
+  veros:
+    company: Niels Bohr Institute
+    title: Scientific assistant
+    location: Copenhagen, Denmark
+    start: 01-01-2017
+    end: 01-08-2017
+    long-description: >
+      I am the main developer of a full-blown, distributed ocean model
+      written in pure Python with full GPU support (\emph{Veros},
+      available on GitHub).
+      Large simulations are only about 2 times slower than a Fortran
+      reference implementation, while being orders of magnitude more
+      approachable for students and scientists.
+    description: >
+      I developed a full-blown, high-performance ocean model in pure Python.
+      I was responsible for everything from the implementation of the
+      numerics and the simulation framework, to quality assurance and
+      documentation. If you want to learn more, check out Veros on GitHub:
+
+      https://github.com/dionhaefner/veros
+
+  hiwi:
+    company: Institute of Environmental Physics
+    title: Research assistant
+    location: Heidelberg, Germany
+    start: 01-06-2014
+    end: 01-12-2016
+    long-description: >
+      I enhanced a numerical simulation package based on the DUNE framework
+      (\textit{DORiE}), written in C++ and Python.
+      By implementing adaptive grid refinement, I was able to speed up
+      simulations by a factor of up to 100.
+    description: >
+      Working in a small team of developers on a numerical software suite.
+      Using C++, Python, Git; responsibilities include specification,
+      implementation, testing, and deployment.
+
+
+education:
+  phd:
+    start: 01-12-2018
+    end:
+    title: PhD in Physical Oceanography
+    institution: University of Copenhagen
+    long-description: >
+      In my PhD project, I infer the relative importance of different hypothesized causes
+      of extreme ocean waves (``rogue waves'') in the real world.
+      To this end, I analyze over 1 Terabyte of observational data
+      with data mining and probabilistic machine learning to extract
+      robust, interpretable insights.
+    description: >
+      In my project, I use statistics / machine learning on large amounts of
+      real-world data to quantify how and under which conditions extreme ocean
+      waves (rogue waves) are generated.
+
+  mscthesis:
+    start: 01-09-2015
+    end: 01-12-2016
+    title: External Master's thesis in Physical Oceanography
+    institution: University of Copenhagen
+    long-description: >
+      Working with state-of-the-art climate models, I learned how to
+      process and analyze large quantities of data, and became familiar
+      with geoscientific modeling and high-performance computing.
+    description: >
+      Running climate models on the DC3 cluster, data evaluation,
+      theoretical examination of large-scale ocean currents,
+      implementation of a reduced-gravity model.
+
+  undergrad:
+    start: 01-09-2011
+    end: 01-12-2016
+    title: BSc and MSc in Physics
+    institution: Heidelberg University
+    long-description: >
+      GPA of 1.3 and 1.2, respectively (``very good'').
+      Exchange year at KTH Stockholm in 2014.
+      Specialization in computational physics.
+    description: >
+      GPA of 1.3 and 1.2, respectively (``very good'').
+      Exchange year at KTH Stockholm in 2014.
+      Specialization in computational physics.
+
+  exchange:
+    start: 01-09-2013
+    end: 01-04-2014
+    title: Exchange semester
+    institution: KTH Stockholm
+    long-description: >
+      Exchange semester during my Bachelor's.
+    description: >
+      Exchange semester during my Bachelor's.
+
+  msc:
+    start: 01-09-2015
+    end: 01-12-2016
+    title: Master of Science (MSc) in Physics
+    institution: Heidelberg University
+    long-description: >
+      GPA of 1.2 (``very good''). Specialization in computational physics.
+    description: >
+      GPA of 1.2 (``very good''). Specialization in computational physics.
+
+  bsc:
+    start: 01-09-2011
+    end: 01-09-2015
+    title: Bachelor of Science (BSc) in Physics
+    institution: Heidelberg University
+    long-description: >
+      GPA of 1.3 (``very good'').
+      Bachelor's thesis at Terrestrial Physics group, IUP Heidelberg:
+      Implementing adaptive grid refinement into DORiE, a numerical PDE
+      solver based on the DUNE framework.
+    description: >
+      GPA of 1.3 (``very good'').
+
+
+technology:
+  ml:
+    title: ML frameworks
+    long-description: >
+      I am familiar with modern machine learning workflows and have good
+      knowledge of scikit-learn, Tensorflow / Keras, PyMC3, and JAX.
+
+  python:
+    title: Python
+    long-description: >
+      I have both deep and broad experience within the Python ecosystem,
+      especially concerning (but not limited to) \highlight{data analysis,
+      machine learning, visualization, and scientific computing}.
+
+      I love working with the modern scientific Python stack and am
+      well-versed with NumPy, SciPy, matplotlib, xarray, JAX, Numba,
+      and Pandas.
+
+  otherlang:
+    title: Other languages
+    long-description: >
+      Basic knowledge of object-oriented programming in C++, including
+      debugging applications with GDB. Elementary knowledge of OpenCL / CUDA.
+
+  tools:
+    title: Tools
+    long-description: >
+      Experience with tools handling version control (git), documentation
+      (Sphinx, Doxygen), build systems (CMake), deployment (Docker),
+      testing (pytest), GUI (Qt), continuous integration
+      (Travis CI / Github Actions), typesetting (\LaTeX).
+
+      I am comfortable working in all major operating systems, and am
+      familiar with basic server administration tasks.
+
+
+teaching:
+
+
+talks:
+
+
+awards:
+  egu-vospp:
+    title: Virtual Outstanding Student and PhD candidate Presentation (vOSPP)
+    institution: European Geophysical Union
+    date: 01-11-2021
+
+
+other:
+  maths: >
+    Strong mathematical and analytical skills, and an affection
+    for data
+  bayes: >
+    A knack for Bayesian data analysis:
+    I like to make my assumptions and uncertainties eplicit.
+  oss: >
+    I am passionate about open-source software development,
+    and am a frequent contributor to various projects on GitHub
+    (\href{https://github.com/dionhaefner}{github.com/dionhaefner}).
+  comm: >
+    A special interest in \highlight{effective communication}
+    through writing, oral presentations, and data visualization.
+    I take the quality of my publications seriously, and love to
+    present my work.
+
+
+languages:
+  de:
+    lang: German
+    skill: native
+  en:
+    lang: English
+    skill: fully proficient
+  se:
+    lang: Swedish
+    skill: proficient
+  dk:
+    lang: Danish
+    skill: elementary
+
+
+references:
+  markus:
+    name: Markus Jochum
+    email: mjochum@nbi.ku.dk
+    occupation: Professor, Niels Bohr Institute, University of Copenhagen, Denmark
+  gustau:
+    name: Gustau Camps-Valls
+    email: gustau.camps@uv.es
+    occupation: Professor, Image Processing Lab, University of Valencia, Spani
+  johannes:
+    name: Johannes Gemmrich
+    email: gemmrich@uvic.ca
+    occupation:
+
+
+publications:
+  rogueprob:
+    doi: 10.1038/s41598-021-89359-1
