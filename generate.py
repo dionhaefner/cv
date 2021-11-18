@@ -99,7 +99,6 @@ def compile_latex(infile, outdir):
         "latexmk",
         "-jobname=cv",
         "-xelatex",
-        "-quiet",
         f"-output-directory={outdir}",
         infile,
     ], check=True)
