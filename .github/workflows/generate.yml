@@ -26,8 +26,7 @@ jobs:
       - name: Install LaTeX packages
         run: |
           tlmgr init-usertree
-          tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2019/tlnet-final
-          tlmgr install fontawesome5
+          tlmgr install fontawesome5 --verify-repo=none
 
       - name: Install fonts
         run: |
