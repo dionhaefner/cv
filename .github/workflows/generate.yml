@@ -21,11 +21,13 @@ jobs:
       - name: Install XeLaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-xetex
+          sudo apt-get install -y texlive-xetex xzdec
 
       - name: Install LaTeX packages
         run: |
-          sudo tlmgr install fontawesome5
+          mkdir -p ~/texmf
+          tlmgr init-usertree
+          tlmgr install fontawesome5
 
       - name: Install fonts
         run: |
