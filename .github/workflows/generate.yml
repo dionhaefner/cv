@@ -21,7 +21,11 @@ jobs:
       - name: Install XeLaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-fonts-extra
+          sudo apt-get install -y texlive-xetex
+
+      - name: Install LaTeX packages
+        run: |
+          sudo tlmgr install fontawesome5
 
       - name: Install fonts
         run: |
@@ -34,6 +38,7 @@ jobs:
 
       - name: Generate CVs
         run: |
+          ls -l
           python generate.py config-cv.yaml -o generated/cv.pdf
           python generate.py config-resume.yaml -o generated/resume.pdf
 
