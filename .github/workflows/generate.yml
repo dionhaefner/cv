@@ -25,7 +25,8 @@ jobs:
             texlive-xetex \
             texlive-fonts-extra \
             texlive-bibtex-extra \
-            latexmk
+            latexmk \
+            biber
 
       - name: Install fonts
         run: |
