@@ -1,2 +1,11 @@
-personal: []
-jobs: []
+template: cv
+
+contents:
+  education:
+    - phd
+    - undergrad
+
+  jobs:
+    - gras
+    - veros
+    - hiwi

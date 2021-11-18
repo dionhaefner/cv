@@ -12,6 +12,8 @@ import ruamel.yaml as yaml
 import requests
 import jinja2
 
+here = os.path.dirname(__file__)
+
 
 def apply_to_leaves(nested, func):
     stack = [nested]
@@ -36,9 +38,9 @@ def apply_to_leaves(nested, func):
     return nested
 
 
-def parse_config(infile):
-    with open(infile, "r") as f:
-        config = yaml.safe_load(f)
+def parse_config(content_file, config_file):
+    with open(content_file, "r") as f:
+        contents = yaml.safe_load(f)
 
     def convert_datetime(key, val):
         if key not in {"start", "end", "date"} or val is None:
@@ -46,8 +48,23 @@ def parse_config(infile):
 
         return datetime.strptime(val, "%d-%m-%Y")
 
-    config = apply_to_leaves(config, convert_datetime)
-    return config
+    def convert_newlines(key, val):
+        if not isinstance(val, str):
+            return val
+
+        return val.replace("\n", "\n\n")
+
+    with open(config_file, "r") as f:
+        config = yaml.safe_load(f)
+
+    template = os.path.join(here, "templates", f"{config['template']}.tex.in")
+
+    for key, vals in config["contents"].items():
+        contents[key] = {v: contents[key][v] for v in vals}
+
+    contents = apply_to_leaves(contents, convert_datetime)
+    contents = apply_to_leaves(contents, convert_newlines)
+    return contents, template
 
 
 def generate_latex(config, template_file, outdir, bibfile=None):
@@ -75,30 +92,17 @@ def generate_latex(config, template_file, outdir, bibfile=None):
     return outfile
 
 
-def compile_latex(infile, outdir, bibfile=None):
+def compile_latex(infile, outdir):
     outfile = os.path.join(outdir, "cv.pdf")
 
     subprocess.run([
-        "xelatex",
-        f"-output-directory={outdir}",
+        "latexmk",
         "-jobname=cv",
-        "-interaction=nonstopmode",
+        "-xelatex",
+        "-quiet",
+        f"-output-directory={outdir}",
         infile,
     ], check=True)
-
-    if bibfile is not None:
-        subprocess.run([
-            "biber",
-            "cv.bcf"
-        ], check=True)
-
-        subprocess.run([
-            "xelatex",
-            f"-output-directory={outdir}",
-            "-jobname=cv",
-            "-interaction=nonstopmode",
-            infile,
-        ], check=True)
 
     return outfile
 
@@ -109,7 +113,7 @@ def generate_bibliography(config, outdir):
 
     outstr = []
 
-    for pub in config["publications"]:
+    for pub in config["publications"].values():
         if "doi" in pub:
             pubstr = doi_to_bibtex(pub["doi"])
         elif "bibtex" in pub:
@@ -142,21 +146,28 @@ def doi_to_bibtex(doi):
 
 @click.command()
 @click.argument("CONFIGFILE", type=click.Path(exists=True, resolve_path=True))
-@click.option("-t", "--template", type=click.Path(exists=True, resolve_path=True), required=True)
-@click.option("-o", "--outfile", type=click.Path(writable=True, resolve_path=True), required=False)
+@click.option("-c", "--contents", type=click.Path(exists=True, resolve_path=True), default=os.path.join(here, "content.yaml"))
+@click.option("-o", "--outfile", type=click.Path(writable=True, resolve_path=True), default=None)
 @click.option("--keep-tempfiles", is_flag=True)
-def main(configfile, template, outfile, keep_tempfiles):
+def main(configfile, contents, outfile, keep_tempfiles):
     if outfile is None:
-        outfile = f"{os.path.splitext(configfile)[0]}.pdf"
+        outname, _ = os.path.splitext(os.path.basename(configfile))
+        if outname.startswith("config-"):
+            outname = outname[7:]
+
+        outfile = os.path.join(here, "generated", f"{outname}.pdf")
 
     tmpdir = tempfile.mkdtemp()
     os.chdir(tmpdir)
 
+    if keep_tempfiles:
+        print(f" > Writing files to {tmpdir}")
+
     try:
-        config = parse_config(configfile)
+        config, template = parse_config(contents, configfile)
         bibfile = generate_bibliography(config, tmpdir)
         texfile = generate_latex(config, template, tmpdir, bibfile=bibfile)
-        out = compile_latex(texfile, tmpdir, bibfile=bibfile)
+        out = compile_latex(texfile, tmpdir)
         shutil.copy(out, outfile)
     finally:
         if not keep_tempfiles:

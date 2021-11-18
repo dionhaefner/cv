@@ -30,6 +30,7 @@
 
 % Fonts
 \renewcommand{\baselinestretch}{1.2}
+\defaultfontfeatures{Ligatures=TeX}
 \setmainfont[Color=darkgrey]{Source Sans Pro}
 \newfontfamily\highlightfont[Color=highlight]{Source Sans Pro}
 \newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
@@ -120,13 +121,16 @@
 	\end{job}
 	%% endfor
 
+	%% if technology
 	\section{Programming and Technology}
 	\begin{description}
 		%% for tech in technology.values()
 		\item[\VAR{tech.title}] \VAR{tech["long-description"]}
 		%% endfor
 	\end{description}
+	%% endif
 
+	%% if other
 	\section{Other Skills \& Interests}
 	\begin{items}
 		%% for item in other.values()
@@ -134,18 +138,19 @@
 		%% endfor
 		\item Languages:
 		%% for item in languages.values()
-		\VAR{item.lang}: \VAR{item.skill}
+		\VAR{item.lang} (\VAR{item.skill})
 			%% if (not loop.last)
 			,
 			%% endif
 		%% endfor
 	\end{items}
+	%% endif
 
 	%% if awards
 	\section {Awards \& Honors}
 	\begin{items}
 		%% for item in awards.values()
-		\item \VAR{item.title} by \VAR{item.institution} (\VAR{item.date.year})
+		\item (\VAR{item.date.year}) \VAR{item.title} by \VAR{item.institution}
 		%% endfor
 	\end{items}
 	%% endif

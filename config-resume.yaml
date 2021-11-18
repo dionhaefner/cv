@@ -1,0 +1,15 @@
+template: resume
+
+contents:
+  education:
+    - phd
+    - undergrad
+
+  jobs:
+    - gras
+    - veros
+
+  technology:
+    - ml
+    - python
+    - tools

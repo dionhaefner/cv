@@ -1,10 +1,10 @@
 personal:
   name: Dion Häfner
-  jobtitle:
+  jobtitle: Scientific Programmer | Programming Scientist
   address: Malmö
   addressurl: https://goo.gl/maps/bdrNM5vz67v
   phone: "+46 76 391 14 75"
-  email: dionha@pm.me
+  email: mail@dionhaefner.de
   github: dionhaefner
   homepage: dionhaefner.github.io
   scholar: 8jzVkXEAAAAJ
@@ -55,9 +55,7 @@ jobs:
       I developed a full-blown, high-performance ocean model in pure Python.
       I was responsible for everything from the implementation of the
       numerics and the simulation framework, to quality assurance and
-      documentation. If you want to learn more, check out Veros on GitHub:
-
-      https://github.com/dionhaefner/veros
+      documentation.
 
   hiwi:
     company: Institute of Environmental Physics
@@ -210,7 +208,7 @@ other:
     for data
   bayes: >
     A knack for Bayesian data analysis:
-    I like to make my assumptions and uncertainties eplicit.
+    I like to make my assumptions and uncertainties explicit.
   oss: >
     I am passionate about open-source software development,
     and am a frequent contributor to various projects on GitHub

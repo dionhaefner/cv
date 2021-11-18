@@ -23,6 +23,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-xetex
 
+      - name: Install LaTeX packages
+        run: |
+          tlmgr install fontawesome5
+
       - name: Install fonts
         run: |
           mkdir ~/.fonts
@@ -32,17 +36,17 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Generate CV
-        run: python generate.py content.yaml -t templates/cv.tex.in -o generated/cv.pdf
-
-      - name: Generate resume
-        run: python generate.py content.yaml -t templates/resume.tex.in -o generated/resume.pdf
+      - name: Generate CVs
+        run: |
+          python generate.py config-cv.yaml -o generated/cv.pdf
+          python generate.py config-resume.yaml -o generated/resume.pdf
 
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add generated
+          git add generated/cv.pdf
+          git add generated/resume.pdf
           git commit -m "Auto-generate CV"
 
       - name: Push changes

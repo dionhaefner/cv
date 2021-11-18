@@ -7,7 +7,7 @@
 \usepackage{csquotes}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper,hmargin={2.8cm, 1.5cm},vmargin={2.0cm, 1.5cm}]{geometry}
-\usepackage{fontawesome}
+\usepackage{fontawesome5}
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{scrextend}
@@ -36,19 +36,20 @@
 
 % Fonts
 \renewcommand{\baselinestretch}{1.2}
-\setmainfont[Color=darkgrey]{Fira Sans}
-\newfontfamily\highlightfont[Color=highlight]{Fira Sans}
-\newfontfamily\contactfont[Color=darkgrey]{Fira Sans}
-\newfontfamily\shadyfont[Color=lightgrey]{Fira Sans}
-\newfontfamily\sidebarfont[Color=darkgrey]{Fira Sans}
-\newfontfamily\headingfont[Color=darkgrey]{Fira Sans Medium}
-\newfontfamily\subheadingfont[Color=darkgrey]{Fira Sans Medium}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\highlightfont[Color=highlight]{Source Sans Pro}
+\newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
+\newfontfamily\sidebarfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\headingfont[Color=darkgrey]{Source Sans Pro Semibold}
+\newfontfamily\subheadingfont[Color=darkgrey]{Source Sans Pro Semibold}
 
 \newcommand{\highlight}[1]{{\highlightfont #1}}
 \newcommand{\shady}[1]{{\shadyfont #1}}
 
 % Lists
-\newcommand{\anglebullet}{\textcolor{halfgrey}{{\scriptsize\faicon{angle-double-right}}}}
+\newcommand{\anglebullet}{\textcolor{halfgrey}{{\scriptsize\faIcon{angle-double-right}}}}
 \newenvironment{items}{%
 	\begin{list}{\anglebullet}{%
 			\setlength{\partopsep}{0pt}
@@ -63,25 +64,25 @@
 	}{\end{list}}
 
 % Personal information
-\newcommand{\name}{Dion Häfner}
-\newcommand{\jobtitle}{}
-\newcommand{\address}{\href{https://goo.gl/maps/bdrNM5vz67v}{Malmö}}
-\newcommand{\phone}{+46 76 391 14 75}
-\newcommand{\email}{\href{mailto:mail@dionhaefner.de}{mail@dionhaefner.de}}
-\newcommand{\github}{\href{https://github.com/dionhaefner/}{dionhaefner}}
-\newcommand{\homepage}{\href{http://www.dionhaefner.de}{dionhaefner.de}}
+\newcommand{\name}{\VAR{personal.name}}
+\newcommand{\jobtitle}{\VAR{personal.jobtitle}}
+\newcommand{\address}{\href{\VAR{personal.addressurl}}{\VAR{personal.address}}}
+\newcommand{\phone}{\VAR{personal.phone}}
+\newcommand{\email}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
+\newcommand{\github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
+\newcommand{\homepage}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
 
 % Styles
-\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faicon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
+\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
 \newcommand{\namestyle}[1]{\highlight{\Huge\scshape\MakeLowercase{#1}}}
-\newcommand{\jobtitlestyle}[1]{{\footnotesize #1}}
+\newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}
 \titleformat{\subsection}{\subheadingfont}{}{0pt}{}
-\titlespacing*{\section}{0pt}{1.4ex plus 1ex minus .2ex}{0pt plus .2ex}
-\titlespacing*{\subsection}{0pt}{0.5ex plus 1ex minus .2ex}{-1ex}
+\titlespacing*{\section}{0pt}{1.0ex plus .2ex minus .2ex}{0pt plus .2ex}
+\titlespacing*{\subsection}{0pt}{0.8ex plus .2ex minus .2ex}{0pt plus .2ex}
 
-\newcommand{\cvtitle}{\namestyle{\name}}
+\newcommand{\cvtitle}{\namestyle{\name}\hfill\jobtitlestyle{\jobtitle}}
 \newcommand{\cvdetails}{\titleitem{phone}{\phone} \titleitem{envelope}{\email} \titleitem{globe}{\homepage} \titleitem{github}{\github}}
 \newcommand{\cvrule}{\textcolor{darkgrey}{\rule{\linewidth}{0.5pt}}}
 
@@ -109,51 +110,49 @@
 	\cvtitle\\[1em]
 	\cvdetails\\
 	\cvrule
-	
-	I am a recent Physics graduate with ...
-	
+
+	\VAR{tagline.replace("\n", " ")}
+
 	\vspace*{-\baselineskip}
 	\begin{column}{\maincolumnwidth}
-		\section{Relevant Experience}
-		\begin{job}{Jan 2017}{present}{Scientific assistant}{NBI Copenhagen}
-		I am the main developer of a full-blown ocean model written in pure Python (\emph{Veros}, available on GitHub). 
-		By making use of the Bohrium framework, large simulations are only about 3 times slower than a Fortran reference implementation (running on 16 CPUs), while being orders of magnitude more approachable for scientists (publication pending).
+		\section{Relevant Work Experience}
+		%% for job in jobs.values()
+		\begin{job}
+		{\VAR{job["start"].strftime("%b %Y")}}
+		{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+		{\VAR{job["title"]}}
+		{\VAR{job["company"]}}
+			\VAR{job["description"]}
 		\end{job}
-	
-		\begin{job}{Jun 2014}{Dec 2016}{Research assistant}{IUP Heidelberg}
-		Within a small team of developers, I have built a numerical simulation package based on the DUNE framework (\textit{DORiE}), written in C++ and Python (publication pending).
-		By implementing adaptive grid refinement, I was able to speed up simulations by a factor of up to 100.
-		\end{job}
-		
+		%% endfor
+
 		\section{Programming Skills}
-		\subsection{Python}
-		I have both deep and broad experience with Python, especially concerning (but not limited to) data analysis, visualization, and scientific computing. 
-		
-		I love working with the modern scientific Python stack. Using virtual environments, Jupyter notebooks, packages such as NumPy, SciPy, matplotlib, and Pandas, and Cython code in performance-critical parts, I can quickly build powerful, shareable, visual applications.
-		
-		\subsection{C++}
-		Good knowledge of object-oriented programming in C++, including debugging applications with GDB.
-		
-		\subsection{Tools}		
-		Experience with tools handling version control (git), documentation (Doxygen, Sphinx), build systems (CMake), deployment (Docker), testing, GUI (Qt), and continuous integration.
+		%% for item in technology.values()
+		\subsection{\VAR{item.title}}
+		\VAR{item["long-description"]}
+		%% endfor
 	\end{column}%
 	\hfill
 	\begin{column}{\sidebarwidth}
 		\section{Education}
 		\begin{items}
-			\item \highlight{MSc in Physics} from \highlight{Heidelberg University}, Germany. Graduated in December 2016 with a grade average of 1.2 (\enquote{very good}).
-			\item External Master's thesis in theoretical oceanography at \highlight{Copenhagen University}. Working with state-of-the-art climate models, I learned how to process and analyze large quantities of data.
-			\item BSc in Physics from Heidelberg University in 2015, grade average of 1.3 (\enquote{very good}).
-			\item Exchange year at \highlight{KTH Stockholm} in 2014, specializing in scientific computing.
+			%% for item in education.values()
+			\item \VAR{item.title} @ \VAR{item.institution} --- \VAR{item.description}
+			%% endfor
 		\end{items}
-		
+
 		\section{Other Skills \& Interests}
 		\begin{items}
-			\item Strong mathematical and \highlight{analytical skills}, and an affection for data.
-			\item Interest in \highlight{effective communication} through writing, oral presentations, and data visualization. 
-			\item Comfortable working with and developing in \highlight{Unix} environments.
-			\item Familiarity with basic server administration tasks.
-			\item Languages: \raisebox{-.9\height}{\includegraphics{lang.pdf}}
+			%% for item in other.values()
+			\item \VAR{item}
+			%% endfor
+			\item \highlight{Languages}:
+			%% for item in languages.values()
+			\VAR{item.lang} (\VAR{item.skill})
+				%% if (not loop.last)
+				,
+				%% endif
+			%% endfor
 		\end{items}
 	\end{column}
 \end{document}
