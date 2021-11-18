@@ -25,6 +25,7 @@ jobs:
 
       - name: Install LaTeX packages
         run: |
+          tlmgr init-usertree
           tlmgr install fontawesome5
 
       - name: Install fonts
