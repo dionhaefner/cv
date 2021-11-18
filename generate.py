@@ -58,6 +58,7 @@ def parse_config(content_file, config_file):
         config = yaml.safe_load(f)
 
     template = os.path.join(here, "templates", f"{config['template']}.tex.in")
+    print(template)
 
     for key, vals in config["contents"].items():
         contents[key] = {v: contents[key][v] for v in vals}
