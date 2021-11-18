@@ -12,7 +12,8 @@ import ruamel.yaml as yaml
 import requests
 import jinja2
 
-here = os.path.dirname(__file__)
+here = os.path.abspath(os.path.dirname(__file__))
+print(here)
 
 
 def apply_to_leaves(nested, func):
