@@ -1,6 +1,6 @@
 # CV
 
-My personal CV and résumé, auto-generated via GitHub Actions.
+My personal [CV](generated/cv.pdf?raw=true) and [résumé](generated/resume.pdf?raw=true), auto-generated via GitHub Actions.
 
 ## Requirements
 
