@@ -2,8 +2,6 @@ name: generate-cv
 
 on:
   push:
-    branches:
-      - main
     paths-ignore:
       - "generated/*.pdf"
 
@@ -39,7 +37,6 @@ jobs:
 
       - name: Generate CVs
         run: |
-          ls -l templates
           python generate.py config-cv.yaml -o generated/cv.pdf
           python generate.py config-resume.yaml -o generated/resume.pdf
 

@@ -119,7 +119,7 @@ education:
       Exchange year at KTH Stockholm in 2014.
       Specialization in computational physics.
 
-  exchange:
+  erasmus:
     start: 01-09-2013
     end: 01-04-2014
     title: Exchange semester
@@ -243,13 +243,21 @@ references:
   gustau:
     name: Gustau Camps-Valls
     email: gustau.camps@uv.es
-    occupation: Professor, Image Processing Lab, University of Valencia, Spani
+    occupation: Professor, Image Processing Lab, University of Valencia, Spain
   johannes:
     name: Johannes Gemmrich
     email: gemmrich@uvic.ca
-    occupation:
+    occupation: Research Scientist, Physics & Astronomy, University of Victoria, Canada
 
 
 publications:
+  mpi4jax:
+    doi: "10.21105/joss.03419"
+  fowd:
+    doi: "10.1175/JTECH-D-20-0185.1"
   rogueprob:
-    doi: 10.1038/s41598-021-89359-1
+    doi: "10.1038/s41598-021-89359-1"
+  dorie:
+    doi: "10.21105/joss.02313"
+  veros:
+    doi: "10.5194/gmd-11-3299-2018"

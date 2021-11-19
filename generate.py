@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import shutil
 import tempfile
 import subprocess
@@ -54,6 +55,13 @@ def parse_config(content_file, config_file):
 
         return val.replace("\n", "\n\n")
 
+    def escape_special_chars(key, val):
+        if not isinstance(val, str):
+            return val
+
+        val = val.replace("&", "\&")
+        return val
+
     with open(config_file, "r") as f:
         config = yaml.safe_load(f)
 
@@ -64,6 +72,7 @@ def parse_config(content_file, config_file):
 
     contents = apply_to_leaves(contents, convert_datetime)
     contents = apply_to_leaves(contents, convert_newlines)
+    contents = apply_to_leaves(contents, escape_special_chars)
     return contents, template
 
 
@@ -132,6 +141,9 @@ def generate_bibliography(config, outdir):
     return outfile
 
 
+refcounter = 0
+
+
 def doi_to_bibtex(doi):
     BASE_URL = "http://dx.doi.org/"
 
@@ -140,7 +152,20 @@ def doi_to_bibtex(doi):
 
     with requests.get(url, headers=headers) as res:
         res.raise_for_status()
-        return res.text
+        out = res.text
+
+    if not out.startswith("@"):
+        raise RuntimeError(f"got unexpected response for doi {doi}: {out}")
+
+    # replace key with arbitrary unique value to avoid duplicates
+    global refcounter
+    out = re.sub(r"^\@(\w+)\{\w+", rf"@\1{{pub{refcounter}", out, count=1)
+    refcounter += 1
+
+    # remove wrong braces from month fields
+    out = re.sub(r"[Mm]onth\s*=\s*\{(\w+)\},", r"month = \1,", out, count=1)
+
+    return out
 
 
 @click.command()

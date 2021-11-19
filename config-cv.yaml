@@ -3,7 +3,9 @@ template: cv
 contents:
   education:
     - phd
-    - undergrad
+    - msc
+    - erasmus
+    - bsc
 
   jobs:
     - gras

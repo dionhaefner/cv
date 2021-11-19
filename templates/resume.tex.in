@@ -10,7 +10,6 @@
 \usepackage{fontawesome5}
 \usepackage{xcolor}
 \usepackage{titlesec}
-\usepackage{scrextend}
 \usepackage{graphics}
 \usepackage{parskip}
 \usepackage[hidelinks]{hyperref}
@@ -74,7 +73,7 @@
 
 % Styles
 \newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
-\newcommand{\namestyle}[1]{\highlight{\Huge\scshape\MakeLowercase{#1}}}
+\newcommand{\namestyle}[1]{\highlight{\Huge\textbf{#1}}}
 \newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}

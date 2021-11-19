@@ -10,7 +10,6 @@
 \usepackage{fontawesome5}
 \usepackage{xcolor}
 \usepackage{titlesec}
-\usepackage{scrextend}
 \usepackage{graphics}
 \usepackage{parskip}
 \usepackage[hidelinks]{hyperref}
@@ -18,7 +17,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 
-\usepackage{biblatex}
+\usepackage[backend=biber,sorting=ydnt]{biblatex}
 \bibliography{publications}
 \nocite{*}
 
@@ -65,12 +64,12 @@
 
 % Styles
 \newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
-\newcommand{\namestyle}[1]{\highlight{\Huge\scshape\MakeLowercase{#1}}}
+\newcommand{\namestyle}[1]{\highlight{\Huge\textbf{\scshape #1}}}
 \newcommand{\jobtitlestyle}[1]{{\footnotesize #1}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}
 \titleformat{\subsection}{\subheadingfont}{}{0pt}{}
-\titlespacing*{\section}{0pt}{1.4ex plus 1ex minus .2ex}{0pt plus .2ex}
+\titlespacing*{\section}{0pt}{1.8ex plus .2ex minus .2ex}{1ex plus .2ex minus .2ex}
 \titlespacing*{\subsection}{0pt}{0.5ex plus 1ex minus .2ex}{-1ex}
 
 \newcommand{\cvtitle}{\namestyle{\name}}
@@ -84,7 +83,6 @@
 		\multirow{2}{1.4cm}{\textit{\footnotesize#1 – #2}} & {\subheadingfont#3} @ {\subheadingfont#4} \\
 		& \setlength{\parskip}{\currentparskip}\BODY
 	\end{tabularx}
-	\medskip
 }
 
 %
@@ -117,7 +115,7 @@
 	{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
 	{\VAR{job["title"]}}
 	{\VAR{job["company"]}}
-		\VAR{job["long-description"]}
+		\VAR{job["description"]}
 	\end{job}
 	%% endfor
 
@@ -136,7 +134,7 @@
 		%% for item in other.values()
 		\item \VAR{item}
 		%% endfor
-		\item Languages:
+		\item \highlight{Languages}:
 		%% for item in languages.values()
 		\VAR{item.lang} (\VAR{item.skill})
 			%% if (not loop.last)
@@ -146,8 +144,10 @@
 	\end{items}
 	%% endif
 
+	\printbibliography[title=Peer-reviewed Publications]
+
 	%% if awards
-	\section {Awards \& Honors}
+	\section{Awards \& Honors}
 	\begin{items}
 		%% for item in awards.values()
 		\item (\VAR{item.date.year}) \VAR{item.title} by \VAR{item.institution}
@@ -155,5 +155,20 @@
 	\end{items}
 	%% endif
 
-	\printbibliography[title=Peer-reviewed Publications]
+	%% if references
+	\section{References}
+	%% for item in references.values()
+	\parbox[t]{.32\textwidth}{
+		\begin{center}
+			\textbf{\VAR{item.name}} \\
+			\shady{\footnotesize \VAR{item.occupation}} \\
+			\href{mailto:\VAR{item.email}}{\VAR{item.email}}
+		\end{center}
+	}
+	%% if not loop.last
+	\hfill
+	%% endif
+	%% endfor
+	%% endif
+
 \end{document}
