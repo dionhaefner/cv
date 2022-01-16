@@ -17,9 +17,57 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 
-\usepackage[backend=biber,sorting=ydnt]{biblatex}
+\usepackage[backend=biber,sorting=ymdt,maxnames=99]{biblatex}
 \bibliography{publications}
 \nocite{*}
+
+% adapted from https://tex.stackexchange.com/a/46879/106555
+\DeclareSortingTemplate{ymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{00}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{00}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{0000}
+  }
+}
+
+% bold own name in publications
+% code from https://tex.stackexchange.com/a/328286/106555
+\newcommand{\makeauthorbold}[1]{%
+  \DeclareNameFormat{author}{%
+    \ifthenelse{\value{listcount}=1}
+    {%
+      {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\namepartfamily\addcomma\addspace \namepartgiveni}}{\namepartfamily\addcomma\addspace \namepartgiveni}}
+      %
+    }{\ifnumless{\value{listcount}}{\value{liststop}}
+        {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}
+        {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}%
+      }
+    \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}{}
+  }
+}
+\makeauthorbold{\VAR{personal.name.split()[-1]}}
+
 
 % Colors
 \definecolor{highlight}{HTML}{CC0000}
@@ -53,17 +101,8 @@
 		}
 	}{\end{list}}
 
-% Personal information
-\newcommand{\name}{\VAR{personal.name}}
-\newcommand{\jobtitle}{\VAR{personal.jobtitle}}
-\newcommand{\address}{\href{\VAR{personal.addressurl}}{\VAR{personal.address}}}
-\newcommand{\phone}{\VAR{personal.phone}}
-\newcommand{\email}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
-\newcommand{\github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
-\newcommand{\homepage}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
-
 % Styles
-\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
+\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.4ex}}
 \newcommand{\namestyle}[1]{\highlight{\Huge\textbf{\scshape #1}}}
 \newcommand{\jobtitlestyle}[1]{{\footnotesize #1}}
 
@@ -72,8 +111,18 @@
 \titlespacing*{\section}{0pt}{1.8ex plus .2ex minus .2ex}{1ex plus .2ex minus .2ex}
 \titlespacing*{\subsection}{0pt}{0.5ex plus 1ex minus .2ex}{-1ex}
 
-\newcommand{\cvtitle}{\namestyle{\name}}
-\newcommand{\cvdetails}{\titleitem{phone}{\phone} \titleitem{envelope}{\email} \titleitem{globe}{\homepage} \titleitem{github}{\github}}
+\newcommand{\cvtitle}{\namestyle{\VAR{personal.name}}}
+\newcommand{\cvdetails}{
+	%% if personal.phone
+	\titleitem{phone}{\VAR{personal.phone}}
+	%% endif
+	%% if personal.address
+	\titleitem{home}{\VAR{personal.address}}
+	%% endif
+	\titleitem{envelope}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
+	\titleitem{globe}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
+	\titleitem{github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
+}
 \newcommand{\cvrule}{\textcolor{darkgrey}{\rule{\linewidth}{0.5pt}}}
 
 \newlength{\currentparskip}
@@ -108,7 +157,7 @@
 		\end{job}
 	%% endfor
 
-	\section{Professional Experience}
+	\section{Work Experience}
 	%% for job in jobs.values()
 	\begin{job}
 	{\VAR{job["start"].strftime("%b %Y")}}
@@ -118,6 +167,19 @@
 		\VAR{job["description"]}
 	\end{job}
 	%% endfor
+
+	%% if projects
+	\section{Projects}
+	%% for item in projects.values()
+		\par{\subheadingfont \VAR{item.title}}%
+
+		\VAR{item.description}
+		%% if item.website
+		\url{\VAR{item.website}}
+		%% endif
+
+	%% endfor
+	%% endif
 
 	%% if technology
 	\section{Programming and Technology}
@@ -136,9 +198,11 @@
 		%% endfor
 		\item \highlight{Languages}:
 		%% for item in languages.values()
-		\VAR{item.lang} (\VAR{item.skill})
+		\VAR{item.lang} (\VAR{item.skill})%
 			%% if (not loop.last)
 			,
+			%% else
+			.
 			%% endif
 		%% endfor
 	\end{items}
@@ -146,11 +210,24 @@
 
 	\printbibliography[title=Peer-reviewed Publications]
 
+	%% if personal.scholar
+	(see also \href{https://scholar.google.com/citations?user=\VAR{personal.scholar}}{\highlight{Google Scholar}})
+	%% endif
+
+	%% if talks.invited
+	\section{Invited Talks}
+	\begin{items}
+		%% for item in talks.invited.values()
+		\item ({\shadyfont \VAR{item.date.year}}) \emph{``\VAR{item.title}''}. \VAR{item.type} @ \VAR{item.venue}.
+		%% endfor
+	\end{items}
+	%% endif
+
 	%% if awards
 	\section{Awards \& Honors}
 	\begin{items}
 		%% for item in awards.values()
-		\item (\VAR{item.date.year}) \VAR{item.title} by \VAR{item.institution}
+		\item ({\shadyfont \VAR{item.date.year}}) \VAR{item.title} by \VAR{item.institution}.
 		%% endfor
 	\end{items}
 	%% endif
@@ -158,7 +235,7 @@
 	%% if references
 	\section{References}
 	%% for item in references.values()
-	\parbox[t]{.32\textwidth}{
+	\parbox[t]{.3\linewidth}{
 		\begin{center}
 			\textbf{\VAR{item.name}} \\
 			\shady{\footnotesize \VAR{item.occupation}} \\

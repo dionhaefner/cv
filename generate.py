@@ -152,7 +152,7 @@ def doi_to_bibtex(doi):
 
     with requests.get(url, headers=headers) as res:
         res.raise_for_status()
-        out = res.text
+        out = res.content.decode("utf-8")
 
     if not out.startswith("@"):
         raise RuntimeError(f"got unexpected response for doi {doi}: {out}")
