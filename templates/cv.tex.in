@@ -79,7 +79,7 @@
 \renewcommand{\baselinestretch}{1.2}
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont[Color=darkgrey]{Source Sans Pro}
-\newfontfamily\namefont[Color=highlight]{Source Sans Pro Black}
+\newfontfamily\namefont[Color=highlight]{Source Sans Pro Semibold}
 \newfontfamily\highlightfont[Color=darkgrey]{Source Sans Pro Semibold}
 \newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
 \newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
@@ -106,7 +106,7 @@
 \setlength{\parskip}{0.6ex}
 
 \newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.4ex}}
-\newcommand{\namestyle}[1]{{\namefont\Huge\scshape #1}}
+\newcommand{\namestyle}[1]{{\namefont\Huge\scshape\MakeLowercase{#1}}}
 \newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}
@@ -136,7 +136,7 @@
 		& \setlength{\parskip}{\currentparskip}\BODY
 	\end{tabularx}
 	\par
-	\vspace{0.5ex}
+	\vspace{0.8ex}
 }
 
 %
@@ -181,7 +181,7 @@
 		\VAR{item.description}
 
 		%% if item.website
-		\url{\VAR{item.website}}
+		\href{\VAR{item.website}}{\shady{\VAR{item.website}}}
 		%% endif
 	%% endfor
 	\par\vspace{0.8ex}
@@ -224,12 +224,6 @@
 	\end{description}
 	%% endif
 
-	\printbibliography[title=Peer-reviewed Publications]
-
-	%% if personal.scholar
-	\vspace{0.8ex}
-	(see also \href{https://scholar.google.com/citations?user=\VAR{personal.scholar}}{\highlight{Google Scholar}})
-	%% endif
 
 	%% if talks and talks.invited
 	\section{Invited Talks}
@@ -247,6 +241,13 @@
 		\item ({\shadyfont \VAR{item.date.year}}) \VAR{item.title} by \VAR{item.institution}.
 		%% endfor
 	\end{items}
+	%% endif
+
+	\printbibliography[title=Peer-reviewed Publications]
+
+	%% if personal.scholar
+	\vspace{0.8ex}
+	(see also \href{https://scholar.google.com/citations?user=\VAR{personal.scholar}}{\highlight{Google Scholar}})
 	%% endif
 
 	%% if references

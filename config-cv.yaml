@@ -3,8 +3,9 @@ template: cv
 contents:
   education:
     - phd
-    - msc
-    - bsc
+    - isp
+    - mscthesis
+    - undergrad
 
   jobs:
     - gras

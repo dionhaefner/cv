@@ -37,7 +37,7 @@
 \renewcommand{\baselinestretch}{1.2}
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont[Color=darkgrey]{Source Sans Pro}
-\newfontfamily\namefont[Color=highlight]{Source Sans Pro Black}
+\newfontfamily\namefont[Color=highlight]{Source Sans Pro Semibold}
 \newfontfamily\highlightfont[Color=highlight]{Source Sans Pro}
 \newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
 \newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
@@ -65,7 +65,7 @@
 % Styles
 \setlength{\parskip}{.4ex}
 \newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
-\newcommand{\namestyle}[1]{{\Huge\namefont\scshape #1}}
+\newcommand{\namestyle}[1]{{\namefont\Huge\scshape\MakeLowercase{#1}}}
 \newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}
@@ -89,8 +89,8 @@
 
 \newlength{\maincolumnwidth}
 \newlength{\sidebarwidth}
-\setlength{\maincolumnwidth}{.58\textwidth}
-\setlength{\sidebarwidth}{.36\textwidth}
+\setlength{\maincolumnwidth}{.60\textwidth}
+\setlength{\sidebarwidth}{.34\textwidth}
 
 \NewEnviron{job}[4]{%
 	\setlength{\currentparskip}{\parskip}%
@@ -147,7 +147,7 @@
 		\section{Education}
 		\begin{items}
 			%% for item in education.values()
-			\item \VAR{item.title} @ \VAR{item.institution} --- \VAR{item.description}
+			\item \textbf{\VAR{item.title}} @ \VAR{item.institution} --- \VAR{item.description}
 			%% endfor
 		\end{items}
 

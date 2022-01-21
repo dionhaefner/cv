@@ -1,6 +1,6 @@
 personal:
   name: Dion Häfner
-  jobtitle: Scientific Programmer | Programming Scientist
+  jobtitle: Programming Scientist | Scientific Programmer
   address: Malmö, Sweden
   email: mail@dionhaefner.de
   github: dionhaefner
@@ -50,7 +50,7 @@ jobs:
       reference implementation, while being orders of magnitude more
       approachable for students and scientists.
     description: >
-      I developed the first prototype of Veros, a high-performance ocean model in pure Python.
+      I developed the first prototype of Veros, a high-performance ocean model in Python.
 
   hiwi:
     company: Institute of Environmental Physics
@@ -64,8 +64,8 @@ jobs:
       By implementing adaptive grid refinement, I was able to speed up
       simulations by a factor of up to 100.
     description: >
-      Working in a small team of developers on a numerical software suite / PDE solver
-      for soil water flow, in C++ and Python.
+      Working in a small team of developers on a numerical software suite
+      for soil water flow (discontinuous Galerkin PDE solver), in C++ and Python.
 
 education:
   phd:
@@ -74,19 +74,15 @@ education:
     title: PhD in Physical Oceanography
     institution: University of Copenhagen
     long-description: >
-      In my PhD project at Niels Bohr Institute (Prof. Markus Jochum),
-      I inferred the relative importance of different hypothesized causes
+      In my PhD project at the Niels Bohr Institute (Prof. Markus Jochum)
+      I inferred the relative importance of hypothesized causes
       of extreme ocean waves (``rogue waves'') in the real world.
       To this end, I analyzed over 1 Terabyte of observational data
       with data mining and probabilistic machine learning to extract
       robust, causal insights.
-
-      During my PhD, I conducted a 3-month research visit to the Image Processing Lab at the
-      \highlight{University of Valencia} (Prof. Gustau Camps-Valls), where I worked on how machine learning can help humans to understand
-      climate models.
     description: >
-      In my project, I use statistics / machine learning on large amounts of
-      real-world data to quantify how and under which conditions extreme ocean
+      In my project, I use machine learning on large amounts of
+      real-world data to infer by which physical mechanisms extreme ocean
       waves (rogue waves) are generated.
 
   isp:
@@ -95,11 +91,13 @@ education:
     title: Research visit
     institution: University of Valencia
     long-description: >
-      During my visit at the Image Processing Lab I worked on the question
-      "How can machine learning help humans to understand climate models better?".
+      During my 3-month research visit to the Image Processing Lab
+      (Prof. Gustau Camps-Valls) I investigated how machine learning can
+      help humans to understand climate models.
     description: >
-      During my visit at IPL I worked on the question
-      "How can machine learning help humans to understand climate models better?".
+      During my 3-month research visit to the Image Processing Lab
+      (Prof. Gustau Camps-Valls) I investigated how machine learning can
+      help humans to understand climate models.
 
   mscthesis:
     start: 01-09-2015
@@ -123,11 +121,11 @@ education:
     long-description: >
       GPA of 1.3 and 1.2, respectively (``very good'').
       Exchange year at KTH Stockholm in 2014.
-      Specialization in computational physics.
+      Specialization on computational physics.
     description: >
       GPA of 1.3 and 1.2, respectively (``very good'').
       Exchange year at KTH Stockholm in 2014.
-      Specialization in computational physics.
+      Specialization on computational physics.
 
   msc:
     start: 01-09-2015
@@ -247,17 +245,17 @@ awards:
 
 other:
   maths: >
-    Strong mathematical and analytical skills, and an affection
+    Strong \highlight{mathematical and analytical skills}, and an affection
     for data.
   numerics: >
-    Good theoretical foundation of applied mathematics and scientific
-    computing (including ODE / PDE solvers, numerical optimization,
+    Good theoretical foundation of \highlight{applied mathematics and scientific
+    computing} (including ODE / PDE solvers, numerical optimization,
     signal processing, and automatic differentiation).
   bayes: >
-    A knack for probabilistic reasoning and Bayesian data analysis:
+    A knack for probabilistic reasoning and \highlight{Bayesian data analysis}:
     I like to make my assumptions and uncertainties explicit.
   oss: >
-    I am passionate about open-source software development,
+    I am passionate about \highlight{open-source software development},
     and have contributed code to several big projects on GitHub.
   comm: >
     A special interest in \highlight{effective communication}
