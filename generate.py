@@ -49,11 +49,11 @@ def parse_config(content_file, config_file):
 
         return datetime.strptime(val, "%d-%m-%Y")
 
-    def convert_newlines(key, val):
+    def handle_whitespace(key, val):
         if not isinstance(val, str):
             return val
 
-        return val.replace("\n", "\n\n")
+        return val.replace("\n", "\n\n").strip()
 
     def escape_special_chars(key, val):
         if not isinstance(val, str):
@@ -71,7 +71,7 @@ def parse_config(content_file, config_file):
         contents[key] = {v: contents[key][v] for v in vals}
 
     contents = apply_to_leaves(contents, convert_datetime)
-    contents = apply_to_leaves(contents, convert_newlines)
+    contents = apply_to_leaves(contents, handle_whitespace)
     contents = apply_to_leaves(contents, escape_special_chars)
     return contents, template
 

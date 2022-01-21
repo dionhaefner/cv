@@ -1,7 +1,7 @@
 \documentclass[11pt,a4paper]{scrartcl}
 
 \usepackage{environ}
-\usepackage{ragged2e}
+\usepackage[document]{ragged2e}
 \usepackage{microtype}
 \usepackage{fontspec}
 \usepackage{csquotes}
@@ -37,6 +37,7 @@
 \renewcommand{\baselinestretch}{1.2}
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\namefont[Color=highlight]{Source Sans Pro Black}
 \newfontfamily\highlightfont[Color=highlight]{Source Sans Pro}
 \newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
 \newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
@@ -57,23 +58,14 @@
 			\setlength{\leftmargin}{1pt}
 			\setlength{\itemindent}{0pt}
 			\sidebarfont
-			\RaggedRight
 			\small
 		}
 	}{\end{list}}
 
-% Personal information
-\newcommand{\name}{\VAR{personal.name}}
-\newcommand{\jobtitle}{\VAR{personal.jobtitle}}
-\newcommand{\address}{\href{\VAR{personal.addressurl}}{\VAR{personal.address}}}
-\newcommand{\phone}{\VAR{personal.phone}}
-\newcommand{\email}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
-\newcommand{\github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
-\newcommand{\homepage}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
-
 % Styles
+\setlength{\parskip}{.4ex}
 \newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.5ex}}
-\newcommand{\namestyle}[1]{\highlight{\Huge\textbf{#1}}}
+\newcommand{\namestyle}[1]{{\Huge\namefont\scshape #1}}
 \newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
 
 \titleformat{\section}{\headingfont\Large}{}{0pt}{}
@@ -81,8 +73,18 @@
 \titlespacing*{\section}{0pt}{1.0ex plus .2ex minus .2ex}{0pt plus .2ex}
 \titlespacing*{\subsection}{0pt}{0.8ex plus .2ex minus .2ex}{0pt plus .2ex}
 
-\newcommand{\cvtitle}{\namestyle{\name}\hfill\jobtitlestyle{\jobtitle}}
-\newcommand{\cvdetails}{\titleitem{phone}{\phone} \titleitem{envelope}{\email} \titleitem{globe}{\homepage} \titleitem{github}{\github}}
+\newcommand{\cvtitle}{\namestyle{\VAR{personal.name}}\hfill\jobtitlestyle{\VAR{personal.jobtitle}}}
+\newcommand{\cvdetails}{
+	%% if personal.phone
+	\titleitem{phone}{\VAR{personal.phone}}
+	%% endif
+	%% if personal.address
+	\titleitem{home}{\VAR{personal.address}}
+	%% endif
+	\titleitem{envelope}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
+	\titleitem{globe}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
+	\titleitem{github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
+}
 \newcommand{\cvrule}{\textcolor{darkgrey}{\rule{\linewidth}{0.5pt}}}
 
 \newlength{\maincolumnwidth}
@@ -125,6 +127,15 @@
 		\end{job}
 		%% endfor
 
+		\section{Relevant Software Projects}
+		%% for item in projects.values()
+		\subsection{\VAR{item.title}}
+		\VAR{item.description}
+		%% if item.website
+		\href{\VAR{item.website}}{\shady{See on GitHub}}
+		%% endif
+		%% endfor
+
 		\section{Programming Skills}
 		%% for item in technology.values()
 		\subsection{\VAR{item.title}}
@@ -147,7 +158,7 @@
 			%% endfor
 			\item \highlight{Languages}:
 			%% for item in languages.values()
-			\VAR{item.lang} (\VAR{item.skill})
+			\VAR{item.lang} (\VAR{item.skill})%
 				%% if (not loop.last)
 				,
 				%% endif
