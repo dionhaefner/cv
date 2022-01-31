@@ -114,9 +114,8 @@
 
 	\VAR{tagline.replace("\n", " ")}
 
-	\vspace*{-\baselineskip}
 	\begin{column}{\maincolumnwidth}
-		\section{Relevant Work Experience}
+		\section{Recent Work Experience}
 		%% for job in jobs.values()
 		\begin{job}
 		{\VAR{job["start"].strftime("%b %Y")}}
@@ -127,7 +126,7 @@
 		\end{job}
 		%% endfor
 
-		\section{Relevant Software Projects}
+		\section{Major Software Projects}
 		%% for item in projects.values()
 		\subsection{\VAR{item.title}}
 		\VAR{item.description}
@@ -147,7 +146,10 @@
 		\section{Education}
 		\begin{items}
 			%% for item in education.values()
-			\item \textbf{\VAR{item.title}} @ \VAR{item.institution} --- \VAR{item.description}
+			\item \textbf{\VAR{item.title}}
+			@ \VAR{item.institution}
+			\shady{(\VAR{item.end.strftime("%Y") if item.end else "ongoing"})}
+			--- \VAR{item.description}
 			%% endfor
 		\end{items}
 

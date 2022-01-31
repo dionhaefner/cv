@@ -20,6 +20,25 @@ tagline: >
 
 
 jobs:
+  pasteur:
+    company: Pasteur Labs
+    title: Research Engineer
+    location: Remote
+    start: 04-04-2022
+    end:
+    long-description: >
+      I build efficient, scalable software for scientific advances in all areas
+      of simulation intelligence (SI). This includes differentiable programming,
+      earth systems simulation, physics-infused machine learning, probabilistic
+      machine learning and computation, simulation based inference, and
+      causal machine learning.
+    description: >
+      I build efficient, scalable software for scientific advances in all areas
+      of simulation intelligence (SI). This includes differentiable programming,
+      earth systems simulation, physics-infused machine learning, probabilistic
+      machine learning and computation, simulation based inference, and
+      causal machine learning.
+
   gras:
     company: DHI GRAS
     title: Software development specialist
@@ -227,13 +246,13 @@ technology:
       like AWS and GCP.
 
 
-# talks:
-#   invited:
-#     drakkar-2022:
-#       title: JAX of all trades — GPU-accelerated ocean modelling in Python
-#       type: Keynote presentation
-#       date: 30-01-2022
-#       venue: DRAKKAR ocean modelling workshop (virtual)
+talks:
+  invited:
+    drakkar-2022:
+      title: JAX of all trades — GPU-accelerated ocean modelling in Python
+      type: Keynote presentation
+      date: 02-02-2022
+      venue: DRAKKAR ocean modelling workshop (virtual)
 
 
 awards:
