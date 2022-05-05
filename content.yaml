@@ -253,6 +253,11 @@ talks:
       type: Keynote presentation
       date: 02-02-2022
       venue: DRAKKAR ocean modelling workshop (virtual)
+     egu-presentation-2022:
+      title: Painless science posters
+      type: Presentation
+      date: 02-05-2022
+      venue: EGU webinar "Be ready to be a great conference presenter" (virtual)
 
 
 awards:
