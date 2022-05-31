@@ -33,11 +33,8 @@ jobs:
       machine learning and computation, simulation based inference, and
       causal machine learning.
     description: >
-      I build efficient, scalable software for scientific advances in all areas
-      of simulation intelligence (SI). This includes differentiable programming,
-      earth systems simulation, physics-infused machine learning, probabilistic
-      machine learning and computation, simulation based inference, and
-      causal machine learning.
+      I build efficient, scalable software for scientific advances at the interface
+      between physical simulators and modern machine learning.
 
   gras:
     company: DHI GRAS
@@ -89,7 +86,7 @@ jobs:
 education:
   phd:
     start: 01-12-2018
-    end:
+    end: 01-04-2022
     title: PhD in Physical Oceanography
     institution: University of Copenhagen
     long-description: >
@@ -100,7 +97,7 @@ education:
       with data mining and probabilistic machine learning to extract
       robust, causal insights.
     description: >
-      In my project, I use machine learning on large amounts of
+      In my project, I used machine learning on large amounts of
       real-world data to infer by which physical mechanisms extreme ocean
       waves (rogue waves) are generated.
 
