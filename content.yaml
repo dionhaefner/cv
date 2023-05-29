@@ -1,6 +1,6 @@
 personal:
   name: Dion Häfner
-  jobtitle: Programming Scientist | Scientific Programmer
+  jobtitle: PhD | Programming Scientist | Scientific Programmer
   address: Malmö, Sweden
   email: mail@dionhaefner.de
   github: dionhaefner
@@ -12,8 +12,9 @@ personal:
 
 
 tagline: >
-  I am a Physicist specialized on all things scientific computing,
-  with industry experience in data processing and machine learning.
+  I am a research engineer and scientist specialized on all things 
+  scientific computing, with industry experience in data processing 
+  and machine learning.
 
   My main research interest is ``human learning'': How can we build machines
   that teach us something about our physical world?
@@ -22,7 +23,7 @@ tagline: >
 jobs:
   pasteur:
     company: Pasteur Labs
-    title: Research Engineer
+    title: Senior Research Engineer
     location: Remote
     start: 04-04-2022
     end:
