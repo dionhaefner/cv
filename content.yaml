@@ -23,7 +23,7 @@ tagline: >
 jobs:
   pasteur:
     company: Pasteur Labs
-    title: Senior Research Engineer
+    title: Senior Research Engineer --- R&D lead
     location: Remote
     start: 04-04-2022
     end:
@@ -212,8 +212,8 @@ technology:
   ml:
     title: ML frameworks
     long-description: >
-      I am familiar with modern machine learning workflows and have good
-      knowledge of scikit-learn, Tensorflow / Keras, PyMC, and JAX.
+      I am familiar with modern machine learning workflows and have deep
+      knowledge of JAX, scikit-learn, Tensorflow / Keras, and PyMC.
 
   python:
     title: Python
@@ -222,13 +222,13 @@ technology:
       especially concerning (but not limited to) \highlight{data analysis,
       machine learning, visualization, and scientific computing}.
       I love working with the modern scientific Python stack and am
-      well-versed with NumPy, SciPy, matplotlib, xarray, JAX, Numba,
-      and Pandas.
+      well-versed with libraries like NumPy, SciPy, matplotlib, xarray, 
+      JAX, Numba, and Pandas.
 
   otherlang:
     title: Other languages
     long-description: >
-      Basic knowledge of object-oriented programming in C++, including
+      Basic knowledge of C and object-oriented programming in C++, including
       debugging applications with GDB. Elementary knowledge of OpenCL / CUDA.
 
   tools:
@@ -236,12 +236,12 @@ technology:
     long-description: >
       Experience with tools handling version control (git), documentation
       (Sphinx, Doxygen), build systems (CMake), deployment (Docker),
-      testing (pytest), GUI (Qt), continuous integration
+      MLOps (Azure ML), testing (pytest), GUI (Qt), continuous integration
       (Travis CI / Github Actions), and typesetting (\LaTeX).
 
-      I am comfortable working in all major operating systems, and am
-      familiar with basic server administration tasks, including cloud providers
-      like AWS and GCP.
+      I am comfortable working in all operating systems, and am
+      familiar with basic administration tasks, including all major
+      cloud providers.
 
 
 talks:
@@ -322,6 +322,8 @@ references:
 
 
 publications:
+  rogue-symreg:
+    doi: "10.1073/pnas.2306275120"
   veros-jax:
     doi: "10.1029/2021MS002717"
   mpi4jax:
