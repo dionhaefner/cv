@@ -38,6 +38,7 @@ jobs:
       - name: Generate CVs
         run: |
           python generate.py config-cv.yaml -o generated/cv.pdf
+          python generate.py config-cv-academic.yaml -o generated/cv-academic.pdf
           python generate.py config-resume.yaml -o generated/resume.pdf
 
       - name: Commit files

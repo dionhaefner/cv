@@ -1,0 +1,244 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage{environ}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,hmargin={3cm, 3cm},vmargin={2.5cm, 2.5cm}]{geometry}
+\usepackage{csquotes}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{graphics}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage[backend=biber,sorting=ymdt,maxnames=99]{biblatex}
+\bibliography{publications}
+\nocite{*}
+
+% adapted from https://tex.stackexchange.com/a/46879/106555
+\DeclareSortingTemplate{ymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{00}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{00}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{0000}
+  }
+}
+
+% bold own name in publications
+% code from https://tex.stackexchange.com/a/328286/106555
+\newcommand{\makeauthorbold}[1]{%
+  \DeclareNameFormat{author}{%
+    \ifthenelse{\value{listcount}=1}
+    {%
+      {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\namepartfamily\addcomma\addspace \namepartgiveni}}{\namepartfamily\addcomma\addspace \namepartgiveni}}
+      %
+    }{\ifnumless{\value{listcount}}{\value{liststop}}
+        {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}
+        {\expandafter\ifstrequal\expandafter{\namepartfamily}{#1}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}%
+      }
+    \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}{}
+  }
+}
+\makeauthorbold{\VAR{personal.name.split()[-1]}}
+
+
+% Colors
+\definecolor{highlight}{HTML}{CC0000}
+\definecolor{lightgrey}{gray}{0.5}
+\definecolor{halfgrey}{gray}{0.3}
+\definecolor{darkgrey}{gray}{0.15}
+
+% Fonts
+\renewcommand{\baselinestretch}{1.2}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\namefont[Color=highlight]{Source Sans Pro Semibold}
+\newfontfamily\highlightfont[Color=darkgrey]{Source Sans Pro Semibold}
+\newfontfamily\contactfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\shadyfont[Color=lightgrey]{Source Sans Pro}
+\newfontfamily\sidebarfont[Color=darkgrey]{Source Sans Pro}
+\newfontfamily\headingfont[Color=darkgrey]{Source Sans Pro Bold}
+\newfontfamily\subheadingfont[Color=darkgrey]{Source Sans Pro Semibold}
+
+\newcommand{\highlight}[1]{{\highlightfont #1}}
+\newcommand{\shady}[1]{{\shadyfont #1}}
+
+% Lists
+\newcommand{\anglebullet}{\textcolor{halfgrey}{{\scriptsize\faIcon{angle-double-right}}}}
+\newenvironment{items}{%
+	\begin{list}{\anglebullet}{%
+			\setlength{\partopsep}{0pt}
+			\setlength{\parsep}{0pt}
+			\setlength{\itemsep}{5pt}
+			\setlength{\leftmargin}{1em}
+			\setlength{\itemindent}{0pt}
+		}
+	}{\end{list}}
+
+% Styles
+\setlength{\parskip}{0.6ex}
+
+\newcommand{\titleitem}[2]{\mbox{\contactfont {\color{halfgrey}\faIcon{#1}}\hspace{1ex}#2}\hspace{1.4ex}}
+\newcommand{\namestyle}[1]{{\namefont\Huge\scshape\MakeLowercase{#1}}}
+\newcommand{\jobtitlestyle}[1]{\shady{\footnotesize\scshape\MakeLowercase{#1}}}
+
+\titleformat{\section}{\headingfont\Large}{}{0pt}{}
+\titleformat{\subsection}{\subheadingfont}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.8ex plus .2ex minus .2ex}{1ex plus .2ex minus .2ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus .2ex minus .2ex}{.4ex plus .1ex minus .1ex}
+
+\newcommand{\cvtitle}{\namestyle{\VAR{personal.name}}\hfill\jobtitlestyle{\VAR{personal.jobtitle}}}
+\newcommand{\cvdetails}{
+	%% if personal.phone
+	\titleitem{phone}{\VAR{personal.phone}}
+	%% endif
+	%% if personal.address
+	\titleitem{home}{\VAR{personal.address}}
+	%% endif
+	\titleitem{envelope}{\href{mailto:\VAR{personal.email}}{\VAR{personal.email}}}
+	\titleitem{globe}{\href{https://\VAR{personal.homepage}}{\VAR{personal.homepage}}}
+	\titleitem{github}{\href{https://github.com/\VAR{personal.github}}{\VAR{personal.github}}}
+}
+\newcommand{\cvrule}{\textcolor{darkgrey}{\rule{\linewidth}{0.5pt}}}
+
+\newlength{\currentparskip}
+\NewEnviron{job}[4]{%
+	\setlength{\currentparskip}{\parskip}%
+	\begin{tabularx}{\textwidth}{@{}rX@{}}
+		\multirow{2}{1.4cm}{\textit{\footnotesize#1 – #2}} & {\subheadingfont#3} @ {\subheadingfont#4} \\
+		& \setlength{\parskip}{\currentparskip}\BODY
+	\end{tabularx}
+	\par
+	\vspace{0.8ex}
+}
+
+%
+% Main document
+%
+
+\begin{document}
+	\pagestyle{plain}
+	\cvtitle\\[1em]
+	\cvdetails\\
+	\cvrule
+
+	\VAR{tagline}
+
+	\section{Education}
+	%% for job in education.values()
+	\begin{job}
+		{\VAR{job["start"].strftime("%b %Y")}}
+		{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+		{\VAR{job["title"]}}
+		{\VAR{job["institution"]}}
+			\VAR{job["long-description"]}
+	\end{job}
+	%% endfor
+
+	\section{Professional Experience}
+	%% for job in jobs.values()
+	\begin{job}
+	{\VAR{job["start"].strftime("%b %Y")}}
+	{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+	{\VAR{job["title"]}}
+	{\VAR{job["company"]}}
+		%% if loop.first
+		\VAR{job["long-description"]}
+		%% else
+		\VAR{job["description"]}
+		%% endif
+	\end{job}
+	%% endfor
+
+	%% if projects
+	\section{Software Projects}
+	%% for item in projects.values()
+		\subsection{\VAR{item.title}}
+
+		\VAR{item.description} %
+		%% if item.website
+		\href{\VAR{item.website}}{\shady{\VAR{item.website}}}
+		%% endif
+	%% endfor
+	\par\vspace{0.8ex}
+	(see all on \href{https://github.com/\VAR{personal.github}}{\highlight{GitHub}})
+	%% endif
+
+	%% if teaching
+	\section{Teaching}
+	\begin{description}
+		%% for key, val in teaching.items()
+		\item[\VAR{key.title()}] \VAR{val}
+		%% endfor
+	\end{description}
+	%% endif
+
+	%% if talks and talks.invited
+	\section{Invited Talks}
+	\begin{items}
+		%% for item in talks.invited.values()
+		\item ({\shadyfont \VAR{item.date.year}}) \emph{``\VAR{item.title}''}. \VAR{item.type} @ \VAR{item.venue}.
+		%% endfor
+	\end{items}
+	%% endif
+
+	%% if awards
+	\section{Awards \& Honors}
+	\begin{items}
+		%% for item in awards.values()
+		\item ({\shadyfont \VAR{item.date.year}}) \VAR{item.title} by \VAR{item.institution}.
+		%% endfor
+	\end{items}
+	%% endif
+
+	\printbibliography[title=Peer-reviewed Publications]
+
+	%% if personal.scholar
+	\vspace{0.8ex}
+	(see also \href{https://scholar.google.com/citations?user=\VAR{personal.scholar}}{\highlight{Google Scholar}})
+	%% endif
+
+	%% if references
+	\section{References}
+	%% for item in references.values()
+	\parbox[t]{.3\linewidth}{
+		\begin{center}
+			\textbf{\VAR{item.name}} \\
+			\shady{\footnotesize \VAR{item.occupation}} \\
+			\href{mailto:\VAR{item.email}}{\VAR{item.email}}
+		\end{center}
+	}
+	%% if not loop.last
+	\hfill
+	%% endif
+	%% endfor
+	%% endif
+
+\end{document}
