@@ -13,7 +13,7 @@ personal:
 
 tagline: >
   I am a physical scientist and research engineer specialized on all things 
-  scientific computing, with industry experience in scientific machine learning,
+  scientific computing, with industry experience in scientific machine learning / AI,
   data engineering, and engineering leadership in a research setting. 
 
   My main research interest is ``human learning'': How can we build machines
@@ -22,9 +22,8 @@ tagline: >
 
 tagline_short: >
   I am a physical scientist and research engineer specialized on all things 
-  scientific computing, with industry experience in scientific machine learning,
+  scientific computing, with industry experience in scientific machine learning / AI,
   data engineering, and engineering leadership in a research setting. 
-
 
 jobs:
   pasteur:
@@ -34,10 +33,14 @@ jobs:
     start: 04-04-2022
     end:
     long-description: >
+      I have been with Pasteur Labs since early on, and have had a hand in
+      building the team, culture, vision, and technology stack from the ground up.
+
       My team and I build efficient, scalable software for scientific advances in all areas
       of simulation intelligence (SI). This includes differentiable programming,
       fluid dynamics simulation, physics-infused machine learning, probabilistic
-      methods, simulation based inference, and causal machine learning.
+      methods, and causal machine learning.
+
       As R&D lead, I guide the team in technical decision making, execution, and
       research-to-product transitions.
     description: >
@@ -241,7 +244,7 @@ technology:
   python:
     title: Python
     long-description: >
-      I have both deep and broad experience with the modern Python stack,
+      I have both deep and broad experience up and down the modern Python stack,
       especially concerning \highlight{data analysis, machine learning, visualization, 
       and scientific computing}, but also general SWE and application development. 
       Be it NumPy, JAX, Numba, Cython, pydantic, streamlit, xarray, pandas, 
