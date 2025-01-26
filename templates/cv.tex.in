@@ -174,18 +174,30 @@
 	%% endfor
 
 	%% if projects
-	\section{Software Projects}
+	\section{Academic Grants and Projects}
 	%% for item in projects.values()
 		\subsection{\VAR{item.title}}
 
-		\VAR{item.description}
-
+		\VAR{item.description} %
 		%% if item.website
 		\href{\VAR{item.website}}{\shady{\VAR{item.website}}}
 		%% endif
 	%% endfor
 	\par\vspace{0.8ex}
-	(see all on \href{https://github.com/\VAR{personal.github}}{\highlight{GitHub}})
+	%% endif
+
+	%% if software
+	\section{Software Projects}
+	%% for item in software.values()
+		\subsection{\VAR{item.title}}
+
+		\VAR{item.description} %
+		%% if item.website
+		\href{\VAR{item.website}}{\shady{\VAR{item.website}}}
+		%% endif
+	%% endfor
+	\par\vspace{0.8ex}
+	(see all projects on \href{https://github.com/\VAR{personal.github}}{\highlight{GitHub}})
 	%% endif
 
 	%% if technology

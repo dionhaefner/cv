@@ -1,6 +1,6 @@
 personal:
   name: Dion Häfner
-  jobtitle: PhD | Programming Scientist | Scientific Programmer
+  jobtitle: PhD ~|~ Programming Scientist ~|~ Scientific Programmer
   address: Malmö, Sweden
   email: mail@dionhaefner.de
   github: dionhaefner
@@ -12,30 +12,39 @@ personal:
 
 
 tagline: >
-  I am a research engineer and scientist specialized on all things 
-  scientific computing, with industry experience in data processing 
-  and machine learning.
+  I am a physical scientist and research engineer specialized on all things 
+  scientific computing, with industry experience in scientific machine learning,
+  data engineering, and engineering leadership in a research setting. 
 
   My main research interest is ``human learning'': How can we build machines
-  that teach us something about our physical world?
+  that teach us to understand and navigate the physical world?
+
+
+tagline_short: >
+  I am a physical scientist and research engineer specialized on all things 
+  scientific computing, with industry experience in scientific machine learning,
+  data engineering, and engineering leadership in a research setting. 
 
 
 jobs:
   pasteur:
     company: Pasteur Labs
-    title: Senior Research Engineer --- R&D lead
+    title: Staff Research Engineer --- R&D lead
     location: Remote
     start: 04-04-2022
     end:
     long-description: >
-      I build efficient, scalable software for scientific advances in all areas
+      My team and I build efficient, scalable software for scientific advances in all areas
       of simulation intelligence (SI). This includes differentiable programming,
-      earth systems simulation, physics-infused machine learning, probabilistic
-      machine learning and computation, simulation based inference, and
-      causal machine learning.
+      fluid dynamics simulation, physics-infused machine learning, probabilistic
+      methods, simulation based inference, and causal machine learning.
+      As R&D lead, I guide the team in technical decision making, execution, and
+      research-to-product transitions.
     description: >
-      I build efficient, scalable software for scientific advances at the interface
+      My team and I build efficient, scalable software for scientific advances at the interface
       between physical simulators and modern machine learning.
+      As R&D lead, I guide the team in technical decision making, execution, and
+      research-to-product transitions.
 
   gras:
     company: DHI GRAS
@@ -67,7 +76,8 @@ jobs:
       reference implementation, while being orders of magnitude more
       approachable for students and scientists.
     description: >
-      I developed the first prototype of Veros, a high-performance ocean model in Python.
+      During this time, I developed the first version of the Veros ocean model,
+      a full-fledged, distributed ocean model in Python (see software projects).
 
   hiwi:
     company: Institute of Environmental Physics
@@ -81,8 +91,8 @@ jobs:
       By implementing adaptive grid refinement, I was able to speed up
       simulations by a factor of up to 100.
     description: >
-      Working in a small team of developers on a numerical software suite
-      for soil water flow (discontinuous Galerkin PDE solver), in C++ and Python.
+      Developing a numerical software suite for the simulation of soil water flow 
+      (discontinuous Galerkin PDE solver), in C++ and Python.
 
 education:
   phd:
@@ -91,7 +101,7 @@ education:
     title: PhD in Physical Oceanography
     institution: University of Copenhagen
     long-description: >
-      In my PhD project at the Niels Bohr Institute (Prof. Markus Jochum)
+      Conducted at the Niels Bohr Institute (Prof. Markus Jochum). 
       I inferred the relative importance of hypothesized causes
       of extreme ocean waves (``rogue waves'') in the real world.
       To this end, I analyzed over 1 Terabyte of observational data
@@ -99,8 +109,8 @@ education:
       robust, causal insights.
     description: >
       In my project, I used machine learning on large amounts of
-      real-world data to infer by which physical mechanisms extreme ocean
-      waves (rogue waves) are generated.
+      real-world data to infer the physical mechanisms behind extreme ocean
+      waves (rogue waves).
 
   isp:
     start: 01-09-2021
@@ -176,20 +186,20 @@ education:
       GPA of 1.3 (``very good'').
 
 
-projects:
+software:
   veros:
     title: Veros --- A high-performance ocean model in pure Python
     description: >
        I am the main developer and maintainer of Veros, a full-fledged primitive equation
        ocean model capable of accurate, realistic simulations of the global ocean.
-       It leverages the JAX library for state-of-the-art performance on CPU and GPU clusters.
+       Veros leverages the JAX library for state-of-the-art performance on CPU and GPU clusters.
     website: https://github.com/team-ocean/veros
   terracotta:
     title: Terracotta --- A light-weight geospatial raster tile server
     description: >
-      Terracotta is a cloud-ready raster tile server,
-      leveraging the cloud-optimized GeoTiff format
-      and a modern geospatial Python stack.
+      Terracotta is a minimal, east-to-use, cloud-ready raster tile server,
+      leveraging the cloud-optimized GeoTiff format and a modern geospatial 
+      Python stack.
     website: https://github.com/DHI-GRAS/terracotta
   mpi4jax:
     title: mpi4jax --- Zero-copy MPI communication of JAX arrays
@@ -199,12 +209,24 @@ projects:
     website: https://github.com/mpi4jax/mpi4jax
 
 
+projects:
+  madgod:
+    title: Co-PI, MADGOD
+    institution: University of Copenhagen
+    start: 01-01-2025
+    end: 01-01-2028
+    description: >
+      I am a co-PI on the MADGOD project, which aims to develop a new generation of
+      machine learning algorithms for the prediction and understanding of 
+      dynamical processes in the Earth system (supervising 1 PhD student).
+
+
 teaching:
   courses: >
-    3 Teaching Assistant (TA) assignments in Physics MSc courses at the Niels Bohr Institute.
+    3 TA assignments in Physics MSc courses at the Niels Bohr Institute.
     Nominated for biannual TA prize in 2021.
   theses: >
-    Co-supervisor to 1 BSc student and 1 MSc student at NBI.
+    Formal co-advisor to 1 PhD student, 1 MSc student, 1 BSc student at Niels Bohr Institute.
     Closely involved in 5 MSc projects from other departments / universities.
 
 
@@ -212,23 +234,24 @@ technology:
   ml:
     title: ML frameworks
     long-description: >
-      I am familiar with modern machine learning workflows and have deep
-      knowledge of JAX, scikit-learn, Tensorflow / Keras, and PyMC.
+      I am intimately familiar with modern machine learning and data workflows, and 
+      are a power user of the JAX library ecosystem. Also scikit-learn, Tensorflow / Keras, 
+      and PyMC3.
 
   python:
     title: Python
     long-description: >
-      I have both deep and broad experience within the Python ecosystem,
-      especially concerning (but not limited to) \highlight{data analysis,
-      machine learning, visualization, and scientific computing}.
-      I love working with the modern scientific Python stack and am
-      well-versed with libraries like NumPy, SciPy, matplotlib, xarray, 
-      JAX, Numba, and Pandas.
+      I have both deep and broad experience with the modern Python stack,
+      especially concerning \highlight{data analysis, machine learning, visualization, 
+      and scientific computing}, but also general SWE and application development. 
+      Be it NumPy, JAX, Numba, Cython, pydantic, streamlit, xarray, pandas, 
+      flask, FastAPI, flake8, ruff, uv, matplotlib, pyvista --- I have used Python 
+      in all its facets.
 
   otherlang:
     title: Other languages
     long-description: >
-      Basic knowledge of C and object-oriented programming in C++, including
+      Decent knowledge of C and object-oriented programming in C++, including
       debugging applications with GDB. Elementary knowledge of OpenCL / CUDA.
 
   tools:
@@ -237,7 +260,7 @@ technology:
       Experience with tools handling version control (git), documentation
       (Sphinx, Doxygen), build systems (CMake), deployment (Docker),
       MLOps (Azure ML), testing (pytest), GUI (Qt), continuous integration
-      (Travis CI / Github Actions), and typesetting (\LaTeX).
+      (Github Actions), and typesetting (\LaTeX).
 
       I am comfortable working in all operating systems, and am
       familiar with basic administration tasks, including all major
@@ -279,11 +302,11 @@ other:
     computing} (including ODE / PDE solvers, numerical optimization,
     signal processing, and automatic differentiation).
   bayes: >
-    A knack for probabilistic reasoning and \highlight{Bayesian data analysis}:
+    A knack for probabilistic reasoning and \highlight{Bayesian data analysis}.
     I like to make my assumptions and uncertainties explicit.
   oss: >
     I am passionate about \highlight{open-source software development},
-    and have contributed code to several big projects on GitHub.
+    and have contributed code to several large projects on GitHub (and started my own).
   comm: >
     A special interest in \highlight{effective communication}
     through writing, oral presentations, and data visualization.

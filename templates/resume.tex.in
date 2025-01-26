@@ -112,7 +112,7 @@
 	\cvdetails\\
 	\cvrule
 
-	\VAR{tagline.replace("\n", " ")}
+	\VAR{tagline_short.replace("\n", " ")}
 
 	\begin{column}{\maincolumnwidth}
 		\section{Recent Work Experience}
@@ -127,7 +127,7 @@
 		%% endfor
 
 		\section{Major Software Projects}
-		%% for item in projects.values()
+		%% for item in software.values()
 		\subsection{\VAR{item.title}}
 		\VAR{item.description}
 		%% if item.website
