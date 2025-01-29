@@ -10,9 +10,11 @@ contents:
   jobs:
     - pasteur
     - gras
-    - veros
     - hiwi
 
   projects:
+    - madgod
+
+  software:
     - veros
     - mpi4jax

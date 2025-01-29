@@ -9,6 +9,9 @@ contents:
     - pasteur
     - gras
 
+  projects:
+    - madgod
+
   software:
     - veros
     - terracotta

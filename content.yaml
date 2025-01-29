@@ -217,11 +217,14 @@ projects:
     title: Co-PI, MADGOD
     institution: University of Copenhagen
     start: 01-01-2025
-    end: 01-01-2028
+    end: 30-06-2028
+    funding_agency: Danish Council for Independent Research - Natural Sciences
+    funding_amount: 3M DKK
+    funding_id: DFF-1:4283-00076B
     description: >
-      I am a co-PI on the MADGOD project, which aims to develop a new generation of
-      machine learning algorithms for the prediction and understanding of 
-      dynamical processes in the Earth system (supervising 1 PhD student).
+      I am co-PI on the MADGOD project (supervising 1 PhD student), which aims 
+      to develop a new generation of machine learning algorithms for the 
+      prediction and understanding of dynamical processes in the Earth system.
 
 
 teaching:

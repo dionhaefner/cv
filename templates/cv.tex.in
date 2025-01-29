@@ -176,14 +176,14 @@
 	%% if projects
 	\section{Academic Grants and Projects}
 	%% for item in projects.values()
-		\subsection{\VAR{item.title}}
-
-		\VAR{item.description} %
-		%% if item.website
-		\href{\VAR{item.website}}{\shady{\VAR{item.website}}}
-		%% endif
+	\begin{job}
+		{\VAR{item["start"].strftime("%b %Y")}}
+		{\VAR{item["end"].strftime("%b %Y") if item["end"] else ""}}
+		{\VAR{item["title"]}}
+		{\VAR{item["institution"]}}
+			\VAR{item["description"]}
+	\end{job}
 	%% endfor
-	\par\vspace{0.8ex}
 	%% endif
 
 	%% if software

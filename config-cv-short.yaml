@@ -3,13 +3,11 @@ template: cv-plain
 contents:
   education:
     - phd
-    - mscthesis
     - undergrad
 
   jobs:
     - pasteur
     - gras
-    - veros
 
   projects:
     - madgod

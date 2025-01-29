@@ -37,17 +37,14 @@ jobs:
 
       - name: Generate CVs
         run: |
-          python generate.py config-cv.yaml -o generated/cv.pdf
-          python generate.py config-cv-academic.yaml -o generated/cv-academic.pdf
-          python generate.py config-resume.yaml -o generated/resume.pdf
+          bash makeall.sh
 
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add generated/cv.pdf
-          git add generated/resume.pdf
-          git commit -m "Auto-generate CV"
+          git add -f generated/*.pdf
+          git commit -m "Auto-generate PDFs"
 
       - name: Push changes
         uses: ad-m/github-push-action@master

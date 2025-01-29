@@ -162,6 +162,21 @@
 	\end{job}
 	%% endfor
 
+	%% if projects
+	\section{Academic Grants and Projects}
+	%% for item in projects.values()
+	\begin{job}
+		{\VAR{item["start"].strftime("%b %Y")}}
+		{\VAR{item["end"].strftime("%b %Y") if item["end"] else ""}}
+		{\VAR{item["title"]}}
+		{\VAR{item["institution"]}}
+			\shady{(\VAR{item["funding_amount"]} by \VAR{item["funding_agency"]})}
+
+			\VAR{item["description"]}
+	\end{job}
+	%% endfor
+	%% endif
+
 	\section{Professional Experience}
 	%% for job in jobs.values()
 	\begin{job}
@@ -177,9 +192,9 @@
 	\end{job}
 	%% endfor
 
-	%% if projects
+	%% if software
 	\section{Software Projects}
-	%% for item in projects.values()
+	%% for item in software.values()
 		\subsection{\VAR{item.title}}
 
 		\VAR{item.description} %
