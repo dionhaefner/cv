@@ -108,6 +108,8 @@
 
 \begin{document}
 	\pagestyle{empty}
+	\begin{minipage}[t][\textheight]{\textwidth}
+	%
 	\cvtitle\\[1em]
 	\cvdetails\\
 	\cvrule
@@ -167,4 +169,6 @@
 			%% endfor
 		\end{items}
 	\end{column}
+	%
+	\end{minipage}
 \end{document}

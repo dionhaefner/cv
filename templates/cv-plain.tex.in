@@ -149,17 +149,6 @@
 	\cvdetails\\
 	\cvrule
 
-	\section{Education}
-	%% for job in education.values()
-	\begin{job}
-		{\VAR{job["start"].strftime("%b %Y")}}
-		{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
-		{\VAR{job["title"]}}
-		{\VAR{job["institution"]}}
-			\VAR{job["description"]}
-	\end{job}
-	%% endfor
-
 	\section{Professional Experience}
 	%% for job in jobs.values()
 	\begin{job}
@@ -168,6 +157,17 @@
 	{\VAR{job["title"]}}
 	{\VAR{job["company"]}}
 		\VAR{job["description"]}
+	\end{job}
+	%% endfor
+
+	\section{Education}
+	%% for job in education.values()
+	\begin{job}
+		{\VAR{job["start"].strftime("%b %Y")}}
+		{\VAR{job["end"].strftime("%b %Y") if job["end"] else "present"}}
+		{\VAR{job["title"]}}
+		{\VAR{job["institution"]}}
+			\VAR{job["description"]}
 	\end{job}
 	%% endfor
 

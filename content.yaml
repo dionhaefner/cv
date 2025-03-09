@@ -16,9 +16,8 @@ tagline: >
   scientific computing, with industry experience in scientific machine learning / AI,
   data engineering, and engineering leadership in a research setting. 
 
-  My main research interest is ``human learning'': How can we build machines
-  that teach us to understand and navigate the physical world?
-
+  I develop data-driven systems that help humans understand and navigate 
+  the physical world.
 
 tagline_short: >
   I am a physical scientist and research engineer specialized on all things 
@@ -62,8 +61,8 @@ jobs:
       times by over 3 orders of magnitude (from weeks to hours), while
       minimizing human supervision.
     description: >
-      At DHI GRAS, I built robust data pipelines, powerful statistical tools,
-      and optimized remote sensing workflows.
+      At DHI GRAS, I built robust data pipelines at the Terabyte scale, powerful statistical 
+      / data science applications, and optimized remote sensing workflows.
 
   veros:
     company: Niels Bohr Institute
@@ -73,14 +72,12 @@ jobs:
     end: 01-08-2017
     long-description: >
       I am the main developer of a full-blown, distributed ocean model
-      written in pure Python with full GPU support (\emph{Veros},
+      written in pure Python / JAX with full GPU support (\emph{Veros},
       available on GitHub).
-      Large simulations are only about 2 times slower than a Fortran
-      reference implementation, while being orders of magnitude more
-      approachable for students and scientists.
     description: >
       During this time, I developed the first version of the Veros ocean model,
-      a full-fledged, distributed ocean model in Python (see software projects).
+      a full-fledged, distributed high-performance ocean simulator in Python 
+      (see software projects).
 
   hiwi:
     company: Institute of Environmental Physics
@@ -193,7 +190,7 @@ software:
   veros:
     title: Veros --- A high-performance ocean model in pure Python
     description: >
-       I am the main developer and maintainer of Veros, a full-fledged primitive equation
+       I am the main developer and maintainer of Veros, a full-fledged 
        ocean model capable of accurate, realistic simulations of the global ocean.
        Veros leverages the JAX library for state-of-the-art performance on CPU and GPU clusters.
     website: https://github.com/team-ocean/veros
@@ -247,7 +244,7 @@ technology:
   python:
     title: Python
     long-description: >
-      I have both deep and broad experience up and down the modern Python stack,
+      I have both deep and broad experience with the modern Python stack,
       especially concerning \highlight{data analysis, machine learning, visualization, 
       and scientific computing}, but also general SWE and application development. 
       Be it NumPy, JAX, Numba, Cython, pydantic, streamlit, xarray, pandas, 
